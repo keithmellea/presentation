@@ -26,7 +26,59 @@
 //base case: if root.val is our target, then return array
 //pre-order traversal
 
-  class TreeNode {
+/*
+  iterate using a while
+
+  let arr = []
+
+  while root.val !== dest {
+
+    arr.push(root.val);
+
+    if(root.val === dest) {
+      root = root.left;
+    } else {  
+      root = root.right;
+    }
+  }
+  
+  return arr;
+*/
+
+function findAncestors(root, dest) {
+  let arr = []
+
+  if(!root) return arr;
+
+  while(root.val !== dest ) {
+
+    arr.push(root.val);
+
+    if(root.val > dest) {
+      root = root.left;
+    } else {  
+      root = root.right;
+    }
+    
+  }
+  
+  return arr;
+}
+
+// function findAncestors(root, dest, arr = []) {
+//   if(root.val === dest) return arr;
+
+//   arr.push(root.val);
+
+//   if(root.val > dest) {
+//     return findAncestors(root.left, dest, arr);
+//   } else {
+//     return findAncestors(root.right, dest, arr);
+//   }
+
+// }
+
+class TreeNode {
     constructor(val) {
         this.val = val;
         this.left = null;
@@ -52,6 +104,10 @@ function testTree(){
 
   return six;
 }
+
+let root = testTree();
+
+console.log(findAncestors(root,10))
 
 // function constructUnbalancedTree(){
 //   let h = new TreeNode('h');
